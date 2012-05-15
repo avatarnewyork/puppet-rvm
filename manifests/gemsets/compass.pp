@@ -1,4 +1,4 @@
-class rvm::compass {
+class rvm::gemsets::compass {
   include rvm
 
   rvm_system_ruby {
