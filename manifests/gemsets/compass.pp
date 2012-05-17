@@ -20,5 +20,9 @@ class rvm::gemsets::compass {
       'ruby-1.9.2-p290@compass/compass':
         require => Rvm_gemset['ruby-1.9.2-p290@compass'];
     }
+    rvm_gem {
+      'ruby-1.9.2-p290@compass/bundler':
+        require => Rvm_gemset['ruby-1.9.2-p290@compass'];
+    }
   }
 }
