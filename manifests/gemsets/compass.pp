@@ -18,13 +18,14 @@ class rvm::gemsets::compass {
     
     rvm_gem {
       'ruby-1.9.2-p290@compass/compass':
+        notify => Exec["/usr/local/rvm/gems/ruby-1.9.2-p290@global/bin/rubygems-bundler-uninstaller"],
         require => Rvm_gemset['ruby-1.9.2-p290@compass'];
     }
-    # New version of rubygems-bundler breaks compass - unsure older version
-    rvm_gem {
-      'ruby-1.9.2-p290@compass/rubygems-bundler':
-        ensure => '0.9.2',
-        require => Rvm_gemset['ruby-1.9.2-p290@compass'];
+    # New version of rubygems-bundler breaks compass - run uninstaller to fix:
+    # http://stackoverflow.com/questions/10610254/cant-install-compass-via-rvm
+    exec {"/usr/local/rvm/gems/ruby-1.9.2-p290@global/bin/rubygems-bundler-uninstaller" :
+      runonce => true,
+      require => Rvm_gem['ruby-1.9.2-p290@compass/compass'],
     }
   }
 }
