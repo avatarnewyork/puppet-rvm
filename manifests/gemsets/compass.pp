@@ -20,8 +20,10 @@ class rvm::gemsets::compass {
       'ruby-1.9.2-p290@compass/compass':
         require => Rvm_gemset['ruby-1.9.2-p290@compass'];
     }
+    # New version of rubygems-bundler breaks compass - unsure older version
     rvm_gem {
-      'ruby-1.9.2-p290@compass/bundler':
+      'ruby-1.9.2-p290@compass/rubygems-bundler':
+        ensure => '0.9.2',
         require => Rvm_gemset['ruby-1.9.2-p290@compass'];
     }
   }
